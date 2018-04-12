@@ -21,7 +21,7 @@ public class CustomBubbleSort {
 
     public static <T extends Comparable> void bubbleSort(T[] array){
 
-        for(int i = 0; i < array.length-i; i++){
+        for(int i = 0; i < array.length; i++){
             Object temp;
             for(int j=1; j < array.length-i; j++){
 
