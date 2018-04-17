@@ -1,5 +1,8 @@
 package insertionsort;
 
+// Result //
+//2 3 6 8 23 24 32 32 46 46 68 367 453 454 545 787 
+
 public class InsertionSort {
 
     public static void main(String[] args) {
