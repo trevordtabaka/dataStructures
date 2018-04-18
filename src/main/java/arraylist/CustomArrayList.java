@@ -30,13 +30,10 @@ public class CustomArrayList <E> {
         }
     }
     public boolean add(Object obj){
-        if(currentIndex < size/2) {
-            DATA[currentIndex] = obj;
-        }else{
+        if(currentIndex > size/2) {
             DATA = resize(size*2);
-            DATA[currentIndex] = obj;
-
         }
+        DATA[currentIndex] = obj;
         currentIndex++;
         return true;
     }
