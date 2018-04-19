@@ -1,35 +1,40 @@
 package arraylist;
 
 
+import java.util.Arrays;
+
 public class CustomArrayList <E> {
 
     private static final int DEFAULT_SIZE = 5;
-    private Object[] DATA;
+    private E[] DATA;
     private int size;
     private int currentIndex =0;
 
     CustomArrayList(){
 
-        this(DEFAULT_SIZE);
+        DATA = (E[]) new Object[DEFAULT_SIZE];
+        this.size = DEFAULT_SIZE;
     }
 
     CustomArrayList(int size){
 
          this.size = size;
+         DATA = (E[]) new Object[this.size];
     }
 
     public int size(){
 
-        return DATA.length;
+        return this.size;
     }
-    public Object get(int index){
-        if(index<size){
+
+    public E get(int index){
+        if(index<currentIndex){
             return DATA[index];
         }else{
-            throw new IndexOutOfBoundsException();
+            throw new NullPointerException();
         }
     }
-    public boolean add(Object obj){
+    public boolean add(E obj){
         if(currentIndex > size/2) {
             DATA = resize(size*2);
         }
@@ -37,20 +42,20 @@ public class CustomArrayList <E> {
         currentIndex++;
         return true;
     }
-    public boolean add(int index, Object obj){
+    public void add(int index, E obj){
         if(index <= size) {
             DATA[index] = obj;
             currentIndex++;
-            return true;
+
         }else{
             throw new IndexOutOfBoundsException();
         }
     }
 
-    private Object[] resize(int size) {
-        this.size = size *2;
-        Object[] tempDATA = DATA;
-        DATA = new Object[this.size];
+    private E[] resize(int size) {
+        this.size = size;
+        E[] tempDATA = DATA;
+        DATA = (E[]) new Object[this.size];
         for(int i = 0; i < currentIndex ;i++){
             if(tempDATA[i] != null){
                 DATA[i] = tempDATA[i];
@@ -64,7 +69,7 @@ public class CustomArrayList <E> {
         if(index < size){
             Object temp = DATA[index];
             DATA[index] = null;
-            while(index<size){
+            while(index<currentIndex){
                 DATA[index] = DATA[index+1];
                 index++;
             }
@@ -75,6 +80,12 @@ public class CustomArrayList <E> {
         return true;
     }
 
-
-
+    @Override
+    public String toString() {
+        return "CustomArrayList{" +
+                "DATA=" + Arrays.toString(DATA) +
+                ", size=" + size +
+                ", currentIndex=" + currentIndex +
+                '}';
+    }
 }
