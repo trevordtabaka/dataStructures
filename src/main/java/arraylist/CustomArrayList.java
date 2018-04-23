@@ -77,6 +77,11 @@ public class CustomArrayList <E> {
         }else{
             throw new IndexOutOfBoundsException();
         }
+        // Added a call to resize to half if the arrayList becomes unnecessarily large for the remaining data.
+        if(currentIndex < size/4){
+            resize(size/2);
+        }
+
         return true;
     }
 
